@@ -1,0 +1,31 @@
+# LLM Configuration
+llm:
+  provider: "openai"  # Groq uses OpenAI-compatible API
+  model: "llama-3.3-70b-versatile"  # Latest available Groq model
+  base_url: null  # Will use OPENAI_BASE_URL from .env
+  api_key: null   # Will use OPENAI_API_KEY from .env
+  temperature: 0.7
+  max_tokens: 8000
+  timeout: 60
+
+# Report Configuration
+report:
+  include_abstract: true
+  include_table_of_contents: true
+  include_references: true
+  include_appendix: false
+  max_code_snippet_lines: 50
+  diagram_format: "mermaid"
+  citation_style: "ieee"
+
+# Plagiarism Prevention
+plagiarism:
+  enabled: true
+  max_similarity_threshold: 0.3
+  paraphrase_iterations: 2
+  check_against_sources: true
+
+# System Settings
+log_level: "INFO"
+output_directory: "./output"
+cache_directory: "./.cache"

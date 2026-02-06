@@ -1,0 +1,46 @@
+# Core dependencies
+python-dotenv==1.0.0
+pydantic==2.5.0
+pyyaml==6.0.1
+
+# LLM Integration
+ollama==0.1.6
+openai==1.7.0
+langchain==0.1.0
+langchain-community==0.0.13
+
+# File Parsing
+nbformat==5.9.2
+nbconvert==7.12.0
+jupyter==1.0.0
+black==23.12.1
+ast-grep-py==0.15.0
+
+# Document Generation
+python-docx==1.1.0
+reportlab==4.0.7
+markdown==3.5.1
+jinja2==3.1.2
+
+# Diagram Generation
+graphviz==0.20.1
+pydot==1.4.2
+
+# Data Processing
+pandas==2.1.4
+numpy==1.26.2
+
+# Utilities
+click==8.1.7
+rich==13.7.0
+tqdm==4.66.1
+requests==2.31.0
+
+# Code Analysis
+ast-comments==1.2.0
+radon==6.0.1
+
+# Testing (optional)
+pytest==7.4.3
+pytest-cov==4.1.0
+pytest-asyncio==0.21.1
