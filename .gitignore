@@ -54,6 +54,9 @@ logs/
 .env.local
 !.env.example
 
+# Test notebooks
+*.ipynb
+
 # Generated Reports
 *.docx
 *.pdf
