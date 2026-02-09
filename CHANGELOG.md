@@ -7,9 +7,47 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Enhanced DOCX formatter with professional formatting
+  - Improved title page with custom typography and colors
+  - Proper heading hierarchy (H1 for main sections, H2 for subsections)
+  - Markdown table parsing and conversion to styled Word tables
+  - Support for bold, italic, and inline code formatting
+  - Bullet and numbered list handling
+  - Code block formatting with monospace fonts
+- Enhanced PDF formatter with professional formatting
+  - Professional title page with custom styling and colors
+  - Markdown table rendering with styled ReportLab tables
+  - Custom style definitions for consistent typography
+  - Improved spacing with proper margins and padding
+  - Inline markdown parsing (bold, italic, code)
+- New DiagramRenderer utility for Mermaid diagram support
+  - Support for mermaid-cli (mmdc) rendering
+  - Support for playwright-based rendering
+  - Automatic fallback to code blocks when renderers unavailable
+  - Converts Mermaid diagrams to PNG images for embedding
+- Comprehensive formatter test suite
+  - 9 automated tests covering all formatters
+  - Tests for structure, tables, headings, and diagrams
+  - Integration tests and edge case handling
+- Expanded AnalyzerAgent capabilities
+  - Enhanced markdown outline extraction
+  - Improved dataset details capture
+  - Structured evaluation metrics extraction
+- Enhanced WriterAgent with richer context handling
+  - Professional section generation with accurate metric tables
+  - Improved narrative quality
+
+### Changed
+- Updated requirements.txt to include playwright for diagram rendering
+- Modified work_status.md to reflect completed tasks
+
 ### Planned
-- Complete implementation of all agent types
-- PDF formatter with LaTeX support
+- Advanced diagram customization (themes, colors, custom styles)
+- Support for additional diagram types (PlantUML, D2)
+- PDF bookmarks and hyperlinks for better navigation
+- Custom document templates and branding
+- Export to additional formats (HTML, LaTeX)
 - Advanced plagiarism detection
 - Multi-language support
 - Web-based UI
