@@ -41,6 +41,7 @@ class PdfFormatter(BaseFormatter):
         if not PDF_AVAILABLE:
             self.logger.warning("reportlab not available. PDF formatting will be limited.")
         self.diagram_renderer = DiagramRenderer()
+        self._temp_diagram_files = []  # Track temp files for cleanup
     
     def format_report(
         self,
@@ -174,6 +175,11 @@ class PdfFormatter(BaseFormatter):
         # Build PDF
         doc.build(story)
         
+        # Clean up temporary diagram files after PDF is built
+        for temp_file in self._temp_diagram_files:
+            temp_file.unlink(missing_ok=True)
+        self._temp_diagram_files.clear()
+        
         self.logger.info(f"PDF report saved to: {output_path}")
         return output_path
     
@@ -276,8 +282,8 @@ class PdfFormatter(BaseFormatter):
                             # Add image to PDF
                             img = Image(str(image_path), width=5*inch, height=3*inch, kind='proportional')
                             story.append(img)
-                            # Clean up temp file
-                            image_path.unlink(missing_ok=True)
+                            # Track temp file for cleanup after PDF is built
+                            self._temp_diagram_files.append(image_path)
                         else:
                             # Fallback to code block
                             story.append(Paragraph(diagram_content, custom_styles['code']))

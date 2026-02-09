@@ -39,6 +39,7 @@ class DocxFormatter(BaseFormatter):
         if not DOCX_AVAILABLE:
             self.logger.warning("python-docx not available. DOCX formatting will be limited.")
         self.diagram_renderer = DiagramRenderer()
+        self._temp_diagram_files = []  # Track temp files for cleanup
     
     def format_report(
         self,
@@ -89,6 +90,11 @@ class DocxFormatter(BaseFormatter):
         
         # Save document
         doc.save(str(output_path))
+        
+        # Clean up temporary diagram files after DOCX is saved
+        for temp_file in self._temp_diagram_files:
+            temp_file.unlink(missing_ok=True)
+        self._temp_diagram_files.clear()
         
         self.logger.info(f"DOCX report saved to: {output_path}")
         return output_path
@@ -202,8 +208,8 @@ class DocxFormatter(BaseFormatter):
                         if image_path and image_path.exists():
                             # Add image to document
                             doc.add_picture(str(image_path), width=Inches(6.0))
-                            # Clean up temp file
-                            image_path.unlink(missing_ok=True)
+                            # Track temp file for cleanup after DOCX is saved
+                            self._temp_diagram_files.append(image_path)
                         else:
                             # Fallback to code block if rendering fails
                             self._add_code_block(doc, diagram_content)
