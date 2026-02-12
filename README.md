@@ -1,4 +1,4 @@
-# Technical Report Generator
+# Notebook Report Generator
 
 Converts Jupyter notebooks, source code, and experimental results into technical reports in multiple formats.
 
