@@ -27,6 +27,11 @@ jobs:
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
     
+    - name: Install Playwright browsers
+      run: |
+        playwright install chromium
+        playwright install-deps chromium
+    
     - name: Lint with flake8
       run: |
         pip install flake8
