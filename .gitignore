@@ -71,6 +71,8 @@ logs/
 !docs/*.md
 !examples/output/*.docx
 !examples/output/*.pdf
+!examples/output/*.markdown
+!examples/*.md
 
 # Temporary Files
 *.tmp
