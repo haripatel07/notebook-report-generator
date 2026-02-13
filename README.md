@@ -37,20 +37,23 @@ Output Formatter (DOCX/PDF)
 ## Quick Start
 
 ```bash
-# Clone the repository
+# Clone and setup
 git clone https://github.com/haripatel07/report-generator.git
 cd report-generator
-
-# Create virtual environment
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
+source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
-# Run the system
-python src/main.py --input path/to/notebook.ipynb --type academic --format docx
+# Setup LLM (pick one)
+ollama pull llama3                    # easiest
+export OPENAI_API_KEY="your_key"      # or this
+export GROQ_API_KEY="your_key"        # or this
+
+# Generate a report
+python src/main.py --input notebook.ipynb --type academic --format docx
 ```
+
+See the LLM Setup section below if you need help with the model setup.
 
 ## Requirements
 
@@ -62,6 +65,71 @@ python src/main.py --input path/to/notebook.ipynb --type academic --format docx
 ## Installation
 
 See [INSTALLATION.md](docs/INSTALLATION.md) for detailed setup instructions.
+
+## LLM Setup
+
+This tool needs an LLM to generate reports. Pick one:
+
+### Using Ollama (easiest option)
+
+If you haven't used LLMs before, start here. It's free and runs locally.
+
+```bash
+# Install from https://ollama.com
+ollama pull llama3
+ollama list  # verify it's installed
+```
+
+The tool will use Ollama automatically if you don't set an API key.
+
+### Using OpenAI
+
+You'll need an API key and it costs money per request.
+
+1. Get a key from https://platform.openai.com/api-keys
+2. Set it in your environment:
+
+```bash
+# Mac/Linux
+export OPENAI_API_KEY="your_key_here"
+
+# Windows PowerShell
+setx OPENAI_API_KEY "your_key_here"
+```
+
+Or just create a `.env` file in the project root:
+```
+OPENAI_API_KEY=your_key_here
+```
+
+**Important:** Restart your terminal after setting the variable.
+
+### Using Groq (free alternative)
+
+Similar to OpenAI but with a generous free tier.
+
+1. Get a key from https://console.groq.com
+2. Set it the same way:
+
+```bash
+export GROQ_API_KEY="your_key_here"
+# or add to .env file
+```
+
+### Testing
+
+```bash
+# If using Ollama
+ollama run llama3 "test"
+
+# Otherwise just try running
+python src/main.py --help
+```
+
+Common issues:
+- Forgot to restart terminal after setting API key
+- Ollama not running (check with `ollama list`)
+- Wrong API key or typo in .env file
 
 ## Usage
 
