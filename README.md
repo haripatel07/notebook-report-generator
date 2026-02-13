@@ -46,8 +46,8 @@ pip install -r requirements.txt
 
 # Setup LLM (pick one)
 ollama pull llama3                    # easiest
-export OPENAI_API_KEY="your_key"      # or this
-export GROQ_API_KEY="your_key"        # or this
+export OPENAI_API_KEY="sk-..."        # OpenAI
+export OPENAI_API_KEY="gsk-..."       # or Groq (also set OPENAI_BASE_URL)
 
 # Generate a report
 python src/main.py --input notebook.ipynb --type academic --format docx
@@ -106,14 +106,22 @@ OPENAI_API_KEY=your_key_here
 
 ### Using Groq (free alternative)
 
-Similar to OpenAI but with a generous free tier.
+Similar to OpenAI but with a generous free tier. Groq uses an OpenAI-compatible API.
 
 1. Get a key from https://console.groq.com
-2. Set it the same way:
+2. Add to `.env` file:
 
 ```bash
-export GROQ_API_KEY="your_key_here"
-# or add to .env file
+LLM_PROVIDER=openai
+LLM_MODEL=llama-3.1-70b-versatile
+OPENAI_API_KEY=gsk_your_key_here
+OPENAI_BASE_URL=https://api.groq.com/openai/v1
+```
+
+Or set as environment variable:
+```bash
+export OPENAI_API_KEY="gsk_your_key_here"
+export OPENAI_BASE_URL="https://api.groq.com/openai/v1"
 ```
 
 ### Testing
